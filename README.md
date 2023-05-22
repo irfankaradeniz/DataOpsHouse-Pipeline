@@ -38,9 +38,24 @@ The consumption layer is the final stage where the data is ready for use by end-
 
 ## Running the code
 
-To run the code, you need to have PySpark installed. You can run the code in a PySpark environment or submit it as a Spark job.
+There are two ways to run the code:
 
-The code is logged using the Python logging module, so you can track the progress and debug any issues.
+Using PySpark: You need to have PySpark installed in your system. You can run the code in a PySpark interactive environment or submit it as a Spark job. The code is logged using the Python logging module, so you can track the progress and debug any issues.
+
+Using Docker: You can use Docker to build and run the application as well. Here are the steps to do so:
+
+Prerequisites
+Docker installed on your machine.
+Steps
+Build the Docker image:
+`docker build -t my-pyspark-app .`
+Note: Replace my-pyspark-app with the desired name for your Docker image.
+
+Run the Docker container:
+`docker run my-pyspark-app`
+Replace my-pyspark-app with the name you used when building the Docker image.
+
+The Dockerfile included in this repository sets up a PySpark environment, copies the application code into the Docker image, and runs the application when the Docker container is started.
 
 ## Contact
 
