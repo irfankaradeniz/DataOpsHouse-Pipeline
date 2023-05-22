@@ -92,9 +92,9 @@ window_30 = Window.partitionBy('customerId').orderBy('orderDate').rowsBetween(-2
 logging.info('Windows defined for calculating quantity of orders')
 
 # Calculate quantity of orders for last 5, 15, and 30 days
-df = df.withColumn('quantityOfOrders(last5Days)', count('orderId').over(window_5))
-df = df.withColumn('quantityOfOrders(last15Days)', count('orderId').over(window_15))
-df = df.withColumn('quantityOfOrders(last30Days)', count('orderId').over(window_30))
+df = df.withColumn('quantityOfOrders_last5Days', count('orderId').over(window_5))
+df = df.withColumn('quantityOfOrders_last15Days', count('orderId').over(window_15))
+df = df.withColumn('quantityOfOrders_last30Days', count('orderId').over(window_30))
 logging.info('Calculated quantity of orders for last 5, 15, and 30 days')
 
 # Calculate total quantity of orders
@@ -118,7 +118,7 @@ df_sales = df.select('orderId', 'orderDate', 'shipDate', 'shipMode', 'city')
 logging.info('Sales DataFrame created')
 
 # Create the Customers DataFrame
-df_customers = df.select('customerId', 'customerName', 'customerFirstName', 'customerLastName', 'segment', 'country', 'city', 'quantityOfOrders(last5Days)', 'quantityOfOrders(last15Days)', 'quantityOfOrders(last30Days)', 'totalQuantityOfOrders')
+df_customers = df.select('customerId', 'customerName', 'customerFirstName', 'customerLastName', 'segment', 'country', 'city', 'quantityOfOrders_last5Days', 'quantityOfOrders_last15Days', 'quantityOfOrders_last30Days', 'totalQuantityOfOrders')
 logging.info('Customers DataFrame created')
 
 # Write the Sales and Customers DataFrames to the 'consumption' layer of the Data Lake as Parquet
